@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>llmproxy · 基于 Cloudflare Worker 的 LLM API 反向代理</title>
-<meta name="description" content="一个基于 Cloudflare Worker 的 LLM API 反向代理，支持 OpenAI、Gemini、Groq 等平台。接口兼容 OpenAI API 规范，可直接使用 OpenAI SDK 调用。">
+<meta name="description" content="一个基于 Cloudflare Worker 的 LLM API 反向代理，内置 OpenAI、DeepSeek、Groq、智谱、通义千问、Moonshot、移动云等 10 个平台。接口兼容 OpenAI API 规范，可直接使用 OpenAI SDK 调用。">
 <meta name="theme-color" content="#0d1117">
 <meta property="og:title" content="llmproxy · LLM API 反向代理">
 <meta property="og:description" content="基于 Cloudflare Worker 的 LLM API 反向代理，兼容 OpenAI API 规范。">
@@ -554,7 +554,7 @@ code,pre{font-family:var(--mono)}
     <div class="badge"><span class="pulse"></span>基于 Cloudflare Worker · 边缘部署</div>
     <h1>把多个 LLM 平台<br>统一成 <span class="grad">一个 API 接口</span></h1>
     <p class="hero-sub">
-      一个基于 Cloudflare Worker 的 LLM API 反向代理，支持 OpenAI、Gemini、Groq 等平台。
+      一个基于 Cloudflare Worker 的 LLM API 反向代理，内置 OpenAI、DeepSeek、Groq、智谱、通义千问、Moonshot、移动云等 10 个平台。
       接口完全兼容 OpenAI API 规范，可直接使用 OpenAI SDK 调用。
     </p>
     <div class="hero-cta">
@@ -573,7 +573,7 @@ code,pre{font-family:var(--mono)}
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="v">7</div>
+        <div class="v">10</div>
         <div class="k">支持平台</div>
       </div>
       <div class="hero-stat">
@@ -791,6 +791,57 @@ code,pre{font-family:var(--mono)}
           </button>
         </div>
       </div>
+      <div class="plat reveal">
+        <div class="plat-top">
+          <div class="plat-logo" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">通义</div>
+          <div>
+            <div class="plat-name">通义千问</div>
+            <div class="plat-desc">阿里云 DashScope</div>
+          </div>
+        </div>
+        <div class="plat-route">
+          <span>/v2/dashscope</span>
+          <button data-copy="/v2/dashscope" title="复制路径">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="plat reveal">
+        <div class="plat-top">
+          <div class="plat-logo" style="background:linear-gradient(135deg,#0891b2,#0e7490)">Kimi</div>
+          <div>
+            <div class="plat-name">Moonshot</div>
+            <div class="plat-desc">Kimi 系列模型</div>
+          </div>
+        </div>
+        <div class="plat-route">
+          <span>/v2/moonshot</span>
+          <button data-copy="/v2/moonshot" title="复制路径">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="plat reveal">
+        <div class="plat-top">
+          <div class="plat-logo" style="background:linear-gradient(135deg,#dc2626,#b91c1c)">云</div>
+          <div>
+            <div class="plat-name">移动云（震泽）</div>
+            <div class="plat-desc">国产 · 呼和浩特节点</div>
+          </div>
+        </div>
+        <div class="plat-route">
+          <span>/v2/cmecloud</span>
+          <button data-copy="/v2/cmecloud" title="复制路径">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -858,13 +909,16 @@ code,pre{font-family:var(--mono)}
           <div class="try-field">
             <label>平台</label>
             <select id="tryPlatform">
-              <option value="openai">OpenAI</option>
-              <option value="gemini">Gemini</option>
-              <option value="groq">Groq</option>
-              <option value="deepseek">DeepSeek</option>
-              <option value="openrouter">OpenRouter</option>
-              <option value="siliconflow">硅基流动</option>
-              <option value="zhipu">智谱 GLM</option>
+          <option value="openai">OpenAI</option>
+          <option value="gemini">Gemini</option>
+          <option value="groq">Groq</option>
+          <option value="deepseek">DeepSeek</option>
+          <option value="openrouter">OpenRouter</option>
+          <option value="siliconflow">硅基流动</option>
+          <option value="zhipu">智谱 GLM</option>
+          <option value="dashscope">通义千问</option>
+          <option value="moonshot">Moonshot (Kimi)</option>
+          <option value="cmecloud">移动云（震泽）</option>
             </select>
           </div>
         </div>
@@ -1003,7 +1057,7 @@ code,pre{font-family:var(--mono)}
           <svg class="arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-a"><div class="faq-a-inner">
-          当前版本暂不支持流式输出，请求会等待完整响应后一次性返回。这是已知限制，欢迎提交 Pull Request 改进。
+          支持。所有 OpenAI 兼容的平台（OpenAI、DeepSeek、OpenRouter、硅基流动、智谱、Moonshot、通义千问、Groq）都以 <code>text/event-stream</code> 原样透传，可正常使用流式输出。仅 Gemini 因上游协议不同，走单独的适配层，暂不支持流式。
         </div></div>
       </div>
       <div class="faq-item reveal">
@@ -1012,7 +1066,7 @@ code,pre{font-family:var(--mono)}
           <svg class="arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-a"><div class="faq-a-inner">
-          是的。代码中 Groq 的转发地址指向一个由 Vercel + FastAPI 搭建的中间层，仅做请求中转、不保存数据。如果介意，可以自行部署该中转层。
+          不会。Groq 的转发地址直接指向官方接口 <code>api.groq.com</code>（其本身即兼容 OpenAI 规范），不经过任何第三方中间层。所有平台都是直连上游官方地址。
         </div></div>
       </div>
     </div>
@@ -1250,11 +1304,15 @@ var PLAT_DEFAULT = {
   deepseek:'deepseek-chat',
   openrouter:'openai/gpt-4o-mini',
   siliconflow:'Qwen/Qwen2.5-7B-Instruct',
-  zhipu:'glm-4-flash'
+  zhipu:'glm-4-flash',
+  dashscope:'qwen-turbo',
+  moonshot:'moonshot-v1-8k',
+  cmecloud:'deepseek-v4-flash-0731'
 };
 var PLAT_LABEL = {
   openai:'OpenAI', gemini:'Gemini', groq:'Groq', deepseek:'DeepSeek',
-  openrouter:'OpenRouter', siliconflow:'硅基流动', zhipu:'智谱 GLM'
+  openrouter:'OpenRouter', siliconflow:'硅基流动', zhipu:'智谱 GLM',
+  dashscope:'通义千问', moonshot:'Moonshot', cmecloud:'移动云（震泽）'
 };
 
 var tryMode = 'demo';
