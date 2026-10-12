@@ -298,6 +298,18 @@ code,pre{font-family:var(--mono)}
 }
 .try-head .t{font-weight:600;font-size:15px;flex:1}
 .try-dot{width:9px;height:9px;border-radius:50%;background:var(--green);flex-shrink:0}
+.mode-switch{
+  display:flex;gap:2px;padding:2px;border-radius:var(--radius);
+  background:var(--bg-alt);border:1px solid var(--border-mut);
+}
+.mode-btn{
+  padding:5px 13px;border-radius:4px;border:none;background:none;
+  color:var(--text-mut);font-size:12.5px;font-weight:500;
+  cursor:pointer;font-family:inherit;white-space:nowrap;
+  transition:background .15s,color .15s;
+}
+.mode-btn:hover{color:var(--text)}
+.mode-btn.active{background:#21262d;color:var(--text);box-shadow:0 1px 2px rgba(1,4,9,.4)}
 .try-body{padding:18px}
 .try-row{display:grid;gap:12px;grid-template-columns:1fr 1fr;margin-bottom:12px}
 .try-field label{
@@ -471,6 +483,8 @@ code,pre{font-family:var(--mono)}
   .section{padding:52px 0}
   .hero{padding:52px 0 46px}
   .try-row{grid-template-columns:1fr}
+  .try-head{flex-wrap:wrap}
+  .mode-switch{margin-left:auto}
 }
 @media (max-width:640px){
   .wrap{padding:0 18px}
@@ -559,7 +573,7 @@ code,pre{font-family:var(--mono)}
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="v">3+</div>
+        <div class="v">7</div>
         <div class="k">支持平台</div>
       </div>
       <div class="hero-stat">
@@ -711,17 +725,68 @@ code,pre{font-family:var(--mono)}
       </div>
       <div class="plat reveal">
         <div class="plat-top">
-          <div class="plat-logo" style="background:linear-gradient(135deg,#ff7000,#e05f00)">M</div>
+          <div class="plat-logo" style="background:linear-gradient(135deg,#4d6bfe,#2c4ae0)">DS</div>
           <div>
-            <div class="plat-name">Mistral</div>
-            <div class="plat-desc">文档提及，待实现</div>
+            <div class="plat-name">DeepSeek</div>
+            <div class="plat-desc">国产 · 高性价比</div>
           </div>
         </div>
-        <div class="plat-route" style="opacity:.62">
-          <span>/v2/mistral</span>
-          <button disabled style="cursor:not-allowed;opacity:.5" title="暂未实现">
+        <div class="plat-route">
+          <span>/v2/deepseek</span>
+          <button data-copy="/v2/deepseek" title="复制路径">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="plat reveal">
+        <div class="plat-top">
+          <div class="plat-logo" style="background:linear-gradient(135deg,#6467f2,#4649d6)">OR</div>
+          <div>
+            <div class="plat-name">OpenRouter</div>
+            <div class="plat-desc">聚合多家模型</div>
+          </div>
+        </div>
+        <div class="plat-route">
+          <span>/v2/openrouter</span>
+          <button data-copy="/v2/openrouter" title="复制路径">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="plat reveal">
+        <div class="plat-top">
+          <div class="plat-logo" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">SF</div>
+          <div>
+            <div class="plat-name">硅基流动</div>
+            <div class="plat-desc">国产 · 含免费额度</div>
+          </div>
+        </div>
+        <div class="plat-route">
+          <span>/v2/siliconflow</span>
+          <button data-copy="/v2/siliconflow" title="复制路径">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="plat reveal">
+        <div class="plat-top">
+          <div class="plat-logo" style="background:linear-gradient(135deg,#2563eb,#1d4ed8)">GLM</div>
+          <div>
+            <div class="plat-name">智谱 GLM</div>
+            <div class="plat-desc">国产 · 含免费模型</div>
+          </div>
+        </div>
+        <div class="plat-route">
+          <span>/v2/zhipu</span>
+          <button data-copy="/v2/zhipu" title="复制路径">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
             </svg>
           </button>
         </div>
@@ -764,16 +829,27 @@ code,pre{font-family:var(--mono)}
     <div class="sec-head reveal">
       <div class="eyebrow">Live Demo</div>
       <h2 class="sec-title">在线试用</h2>
-      <p class="sec-desc">填入你自己的 API Key，直接调用这个代理服务。密钥仅在浏览器内使用，不会发送到除了目标平台之外的任何地方。</p>
+      <p class="sec-desc">无需任何密钥即可体验完整调用流程。想验证真实接口时，切换到「真实请求」并填入你自己的 API Key —— 密钥只在你的浏览器内使用。</p>
     </div>
 
     <div class="try reveal">
       <div class="try-head">
-        <span class="try-dot"></span>
+        <span class="try-dot" id="tryDot"></span>
         <span class="t">API Playground</span>
-        <span style="font-size:12.5px;color:#6e7681" id="tryEndpoint"></span>
+        <div class="mode-switch" id="modeSwitch">
+          <button class="mode-btn active" data-mode="demo">演示模式</button>
+          <button class="mode-btn" data-mode="live">真实请求</button>
+        </div>
       </div>
       <div class="try-body">
+        <div id="demoPane">
+          <div class="alert alert-info" style="margin:0 0 14px">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            <div><strong>模拟演示</strong><br>不发送任何真实请求，仅按本项目的转发规则回放一段示例，用于展示接口结构与响应格式。想调真实模型请切到「真实请求」。</div>
+          </div>
+        </div>
         <div class="try-row">
           <div class="try-field">
             <label>代理服务地址</label>
@@ -785,13 +861,17 @@ code,pre{font-family:var(--mono)}
               <option value="openai">OpenAI</option>
               <option value="gemini">Gemini</option>
               <option value="groq">Groq</option>
+              <option value="deepseek">DeepSeek</option>
+              <option value="openrouter">OpenRouter</option>
+              <option value="siliconflow">硅基流动</option>
+              <option value="zhipu">智谱 GLM</option>
             </select>
           </div>
         </div>
         <div class="try-row">
           <div class="try-field">
             <label>API Key</label>
-            <input type="password" id="tryKey" placeholder="sk-..." spellcheck="false" autocomplete="off">
+            <input type="password" id="tryKey" placeholder="演示模式下无需填写" spellcheck="false" autocomplete="off">
           </div>
           <div class="try-field">
             <label>模型</label>
@@ -809,9 +889,9 @@ code,pre{font-family:var(--mono)}
             </svg>
             发送请求
           </button>
-          <span class="try-note" id="tryNote">需要可访问该地址的网络环境</span>
+          <span class="try-note" id="tryNote">演示模式 · 无需密钥</span>
         </div>
-        <div class="try-out" id="tryOut">等待请求…</div>
+        <div class="try-out" id="tryOut">点击「发送请求」查看完整调用流程。</div>
       </div>
     </div>
   </div>
@@ -1163,19 +1243,65 @@ for (var r=0;r<routeBtns.length;r++){
 }
 
 /* ---------------- 在线试用 ---------------- */
-var PLAT_DEFAULT = { openai:'gpt-4o-mini', gemini:'gemini-1.5-flash', groq:'llama-3.1-8b-instant' };
+var PLAT_DEFAULT = {
+  openai:'gpt-4o-mini',
+  gemini:'gemini-1.5-flash',
+  groq:'llama-3.1-8b-instant',
+  deepseek:'deepseek-chat',
+  openrouter:'openai/gpt-4o-mini',
+  siliconflow:'Qwen/Qwen2.5-7B-Instruct',
+  zhipu:'glm-4-flash'
+};
+var PLAT_LABEL = {
+  openai:'OpenAI', gemini:'Gemini', groq:'Groq', deepseek:'DeepSeek',
+  openrouter:'OpenRouter', siliconflow:'硅基流动', zhipu:'智谱 GLM'
+};
+
+var tryMode = 'demo';
 
 function updateEndpointHint(){
   var base = $('tryBase').value.trim().replace(/\/+$/,'');
   var p = $('tryPlatform').value;
-  $('tryEndpoint').textContent = base ? (base + '/v2/' + p) : '';
+  var path = base ? (base + '/v2/' + p + '/v1/chat/completions') : '/v2/' + p + '/v1/chat/completions';
+  var note = $('tryNote');
+  if (note){
+    note.textContent = (tryMode === 'demo' ? '演示模式 · ' : '真实请求 · ') + path;
+    note.style.fontFamily = 'var(--mono)';
+    note.style.wordBreak = 'break-all';
+  }
 }
+
+function setTryMode(mode){
+  tryMode = mode;
+  var btns = document.querySelectorAll('.mode-btn');
+  for (var i=0;i<btns.length;i++){
+    btns[i].classList.toggle('active', btns[i].getAttribute('data-mode') === mode);
+  }
+  var isDemo = mode === 'demo';
+  $('demoPane').classList.toggle('hidden', !isDemo);
+  $('tryKey').placeholder = isDemo ? '演示模式下无需填写' : 'sk-...';
+  $('tryDot').style.background = isDemo ? '#d29922' : '#3fb950';
+  $('tryOut').className = 'try-out';
+  $('tryOut').textContent = isDemo
+    ? '点击「发送请求」查看完整调用流程。'
+    : '等待真实请求…';
+  updateEndpointHint();
+}
+
+var modeBtns = document.querySelectorAll('.mode-btn');
+for (var mb=0;mb<modeBtns.length;mb++){
+  modeBtns[mb].addEventListener('click', function(){
+    setTryMode(this.getAttribute('data-mode'));
+  });
+}
+
 $('tryBase').addEventListener('input', updateEndpointHint);
 $('tryPlatform').addEventListener('change', function(){
   $('tryModel').value = PLAT_DEFAULT[this.value] || '';
   updateEndpointHint();
 });
 updateEndpointHint();
+setTryMode('demo');
 
 function setOut(text, cls){
   var el = $('tryOut');
@@ -1183,7 +1309,80 @@ function setOut(text, cls){
   el.textContent = text;
 }
 
+/* ---------- 演示模式：按转发规则回放 ---------- */
+function runDemo(){
+  var platform = $('tryPlatform').value;
+  var model = $('tryModel').value.trim() || PLAT_DEFAULT[platform] || 'gpt-4o-mini';
+  var prompt = $('tryPrompt').value.trim() || '（空）';
+  var base = $('tryBase').value.trim().replace(/\/+$/,'');
+  var url = base + '/v2/' + platform + '/v1/chat/completions';
+
+  var reply = '反向代理就像一个「中间人」：你的请求先发给它，它再替你转发给真正的服务端，'
+            + '把结果原样带回来 —— 这样你只需面对一个固定地址，背后的服务换了也不影响。';
+
+  var payload = {
+    model: model,
+    messages: [{ role:'user', content: prompt }]
+  };
+
+  var wired = [
+    '① 浏览器组装请求',
+    '   POST ' + url,
+    '   Authorization: Bearer <你的密钥>   ← 由客户端携带',
+    '   body: ' + JSON.stringify(payload),
+    '',
+    '② Cloudflare Worker 接收（/v2 路由）',
+    '   解析路径第二段 → supplier = "' + platform + '"',
+    '   匹配对应 Inference 实现 → ' + (PLAT_LABEL[platform] || platform),
+    '',
+    '③ 转发至上游平台（密钥随请求头透传）',
+    '   等待上游返回…',
+    '',
+    '④ 返回结果（OpenAI 兼容格式）'
+  ].join('\n');
+
+  setOut('请求已发出，正在按路由规则转发…');
+  $('trySend').disabled = true;
+
+  var original = $('trySend').innerHTML;
+  $('trySend').innerHTML = '<span class="spin"></span> 请求中…';
+
+  var steps = ['正在连接代理服务…', '路由匹配中…', '转发至上游平台…', '接收响应…'];
+  var si = 0;
+  var tick = setInterval(function(){
+    if (si < steps.length) setOut(steps[si++]);
+  }, 420);
+
+  setTimeout(function(){
+    clearInterval(tick);
+    var response = {
+      id: 'chatcmpl-' + Math.random().toString(36).slice(2, 12),
+      object: 'chat.completion',
+      created: Math.floor(Date.now() / 1000),
+      model: model,
+      choices: [{
+        index: 0,
+        message: { role: 'assistant', content: reply },
+        finish_reason: 'stop'
+      }],
+      usage: { prompt_tokens: 14, completion_tokens: 58, total_tokens: 72 }
+    };
+
+    setOut(
+      '✅ 调用成功（演示数据）\n\n' +
+      '—— 调用链路 ——\n' + wired + '\n\n' +
+      '—— 响应体 ——\n' + JSON.stringify(response, null, 2) + '\n\n' +
+      '—— 提示 ——\n以上为演示数据，未产生任何真实请求。\n要调用真实模型，请切换到「真实请求」并填入 API Key。',
+      'ok'
+    );
+    $('trySend').disabled = false;
+    $('trySend').innerHTML = original;
+  }, 1750);
+}
+
 $('trySend').addEventListener('click', function(){
+  if (tryMode === 'demo'){ runDemo(); return; }
+
   var base = $('tryBase').value.trim().replace(/\/+$/,'');
   var platform = $('tryPlatform').value;
   var key = $('tryKey').value.trim();
@@ -1192,7 +1391,7 @@ $('trySend').addEventListener('click', function(){
   var btn = this;
 
   if (!base){ setOut('请先填写代理服务地址', 'err'); return; }
-  if (!key){ setOut('请填写 API Key', 'err'); $('tryKey').focus(); return; }
+  if (!key){ setOut('真实请求需要填写 API Key。若只想看流程，请切换到「演示模式」。', 'err'); $('tryKey').focus(); return; }
   if (!model){ setOut('请填写模型名称', 'err'); return; }
   if (!prompt){ setOut('请输入提问内容', 'err'); return; }
 
